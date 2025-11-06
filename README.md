@@ -1,125 +1,122 @@
-# 🚀 InfoHub — Smart Utility Dashboard
+🌐 InfoHub
 
-**InfoHub** is a modern, responsive dashboard that brings together **real-time weather updates**, **currency conversion**, and **motivational quotes** — all in one elegant interface.
+InfoHub is a modern, responsive, and fully interactive web dashboard that aggregates useful tools and information in one place. Built with React.js on the frontend and Node.js/Express.js on the backend, it provides real-time weather updates, motivational quotes, and a currency converter, making it a versatile application for everyday users.
 
-Built with **React (Vite)** for lightning-fast performance and **Node.js + Express** for a robust backend.
+🔗 Live Demo: https://info-hub-one.vercel.app/
 
----
+📁 GitHub Repository: https://github.com/eshwarpresi/InfoHub
 
-## 🔗 Live Demo
-🌐 **Deployed App:** [https://info-hub-one.vercel.app/](https://info-hub-one.vercel.app/)  
-💻 **GitHub Repository:** [https://github.com/eshwarpresi/InfoHub](https://github.com/eshwarpresi/InfoHub)
+🚀 Features
 
----
+💫 Motivational Quotes: Fetches random inspirational quotes to keep users motivated.
 
-## 🧠 Overview
-InfoHub was built to demonstrate clean architecture, real-time data handling, and modern React UI design.  
-It reflects my ability to:
-- Integrate multiple public APIs smoothly  
-- Structure full-stack apps professionally  
-- Deliver polished UI/UX with responsive layouts  
+🌤️ Live Weather Module: Displays current weather based on your location or a default city, including temperature, humidity, wind speed, sunrise, and sunset.
 
----
+💱 Currency Converter: Convert any two currencies in real-time using reliable API data.
 
-## 🛠️ Tech Stack
+Responsive Design: Works flawlessly on mobile, tablet, and desktop.
 
-**Frontend:**  
-- ⚛️ React (Vite)  
-- 🎨 TailwindCSS + Custom CSS  
-- 🌩️ Axios for API requests  
+Error Handling: Graceful fallback messages for failed API calls or denied location access.
 
-**Backend:**  
-- 🧠 Node.js + Express  
-- 🔐 dotenv for environment variables  
-- 🌍 CORS for cross-origin communication  
+Vite + React + Node.js: Fast, modern, and maintainable stack for frontend and backend.
 
----
+🛠 Tech Stack
 
-## ✨ Key Features
+Frontend: React.js, Vite, Tailwind CSS
 
-✅ **Weather Module** – Displays live weather details with temperature, location & coordinates  
-✅ **Currency Converter** – Converts between global currencies with up-to-date rates  
-✅ **Quote Generator** – Fetches inspiring motivational quotes dynamically  
-✅ **Clean UI** – Minimal, responsive, and aligned layout with subtle animations  
-✅ **Full-Stack Integration** – Smooth API communication between client and server  
+Backend: Node.js, Express.js, SQLite
 
----
+APIs: OpenWeatherMap (Weather), Custom Quote API, Currency API
 
-## ⚙️ Local Setup
+Deployment: Vercel (Frontend), Render (Backend)
 
-### Clone the Repository
-```bash
+Version Control: Git + GitHub
+
+📂 Project Structure
+InfoHub/
+├─ client/             # React frontend
+│  ├─ src/
+│  │  ├─ components/   # Modular UI components
+│  │  │  ├─ WeatherModule.jsx
+│  │  │  ├─ QuoteGenerator.jsx
+│  │  │  └─ CurrencyConverter.jsx
+│  │  └─ App.jsx
+│  └─ package.json
+├─ server/             # Node.js backend
+│  ├─ server.js
+│  └─ package.json
+├─ README.md
+└─ .gitignore
+
+⚡ Installation & Setup
+1️⃣ Clone the repository
 git clone https://github.com/eshwarpresi/InfoHub.git
 cd InfoHub
-Install Dependencies
-Backend:
 
-bash
-Copy code
+2️⃣ Backend Setup
 cd server
 npm install
-Frontend:
+npm start
 
-bash
-Copy code
+
+Backend runs on http://localhost:5000
+
+Handles weather, quotes, and currency APIs.
+
+3️⃣ Frontend Setup
 cd ../client
 npm install
-Run the App
-Start backend:
-
-bash
-Copy code
-cd server
-node server.js
-Start frontend:
-
-bash
-Copy code
-cd ../client
 npm run dev
-Open http://localhost:5173 to view the app.
 
-🔑 Environment Variables
-Create a .env file in both server and client folders.
 
-Server (.env)
-ini
-Copy code
-PORT=5000
-WEATHER_API_KEY=your_openweather_api_key
-CURRENCY_API_KEY=your_exchange_api_key
-Client (.env)
-ini
-Copy code
-VITE_API_BASE_URL=http://localhost:5000
-🧩 Folder Structure
-pgsql
-Copy code
-InfoHub/
-├── client/              # React Frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── WeatherModule.jsx
-│   │   │   ├── CurrencyConverter.jsx
-│   │   │   └── QuoteGenerator.jsx
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   └── package.json
-│
-└── server/              # Express Backend
-    ├── server.js
-    ├── .env
-    └── package.json
-🚀 Deployment
-Frontend — Vercel
-Build Command: npm run build
+Frontend runs on http://localhost:5173 (Vite default)
 
-Output Directory: dist
+Ensure .env contains:
 
-Backend — Render / Railway / Vercel Functions
-Start Command: node server.js
+VITE_API_BASE_URL=https://infohub-ph4h.onrender.com
+
+4️⃣ Build & Deploy
+npm run build
+
+
+For production deployment, push to Vercel (frontend) and Render (backend).
+
+📝 Key Highlights
+
+Clean Code & Modular Components: Every module is reusable and maintainable.
+
+API Integration Expertise: Handles multiple APIs with proper error handling.
+
+User-Centric Design: Smooth UI/UX with Tailwind CSS, mobile-first approach.
+
+Environment Variables: Securely configured API endpoints using .env files.
+
+Git & Version Control: Well-structured commits, clean Git history, ready for collaboration.
+
+
+🔑 Features 
+
+Complete full-stack implementation (React + Node.js + APIs)
+
+Responsive design using Tailwind CSS
+
+Real-time location-based weather using geolocation API
+
+Clean error handling and loading states
+
+Fully deployable project with Vercel + Render
+
+
+📌 Contact & Feedback
+
+GitHub: https://github.com/eshwarpresi
+
+Email: eshwarraju2002@gmail.com
+
+LinkedIn: linkedin.com/in/eshwar-raju-a-g-715a74286
+
 
 👨‍💻 Author
 Eshwar
-🎓 Full-Stack Developer | ByteXL Coding Challenge Participant
-🌐 GitHub Profile
+🎓 Mern-Full-Stack Developer | ByteXL Coding Challenge
+🌐 https://github.com/eshwarpresi
