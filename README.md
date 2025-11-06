@@ -124,6 +124,9 @@ Backend — Render / Railway / Vercel Functions
 
 Start Command: node server.js
 
+⚡ Note: After opening the deployed link in your browser, please wait for 15–20 seconds — the backend may take a moment to wake up.
+🔁 If the site doesn’t load immediately, simply refresh or restart once to ensure it runs smoothly.
+
 👨‍💻 Author
 
 Eshwar Raju
