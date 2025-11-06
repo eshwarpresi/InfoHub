@@ -5,12 +5,11 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allow only your Vercel frontend to access the API
+// Middleware
 const corsOptions = {
   origin: 'https://info-dl1f54bei-eshwarpresis-projects.vercel.app', // Vercel frontend URL
   credentials: true
 };
-
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -23,7 +22,7 @@ const motivationalQuotes = [
   { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" }
 ];
 
-// ================== WEATHER API ==================
+// Weather API endpoint
 app.get('/api/weather', async (req, res) => {
   try {
     const { city = 'Bangalore', lat, lon } = req.query;
@@ -32,6 +31,7 @@ app.get('/api/weather', async (req, res) => {
     if (lat && lon) {
       const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed,pressure_msl&timezone=auto`);
       const data = await response.json();
+
       const weatherCodes = {
         0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
         45: 'Fog', 48: 'Depositing rime fog', 51: 'Light drizzle', 53: 'Moderate drizzle',
@@ -58,6 +58,7 @@ app.get('/api/weather', async (req, res) => {
         'Chennai': { temp: 32, desc: 'Hot', humidity: 75 }
       };
       const cityData = cityWeather[city] || cityWeather['Bangalore'];
+
       weatherData = {
         location: `${city}, IN`,
         temperature: cityData.temp,
@@ -78,38 +79,35 @@ app.get('/api/weather', async (req, res) => {
       data: weatherData,
       note: lat && lon ? "Live weather from your location" : "Sample city data"
     });
+
   } catch (error) {
     console.error('Weather API error:', error.message);
-    const fallbackData = {
-      location: "Bangalore, IN",
-      temperature: 26,
-      description: "Partly cloudy",
-      humidity: 65,
-      windSpeed: 3.2,
-      icon: "02d",
-      feelsLike: 28,
-      pressure: 1013,
-      visibility: 10
-    };
     res.json({
       success: true,
-      data: fallbackData,
+      data: {
+        location: "Bangalore, IN",
+        temperature: 26,
+        description: "Partly cloudy",
+        humidity: 65,
+        windSpeed: 3.2,
+        icon: "02d",
+        feelsLike: 28,
+        pressure: 1013,
+        visibility: 10
+      },
       note: "Using sample weather data"
     });
   }
 });
 
-// ================== CURRENCY API ==================
+// Currency conversion endpoint
 app.get('/api/currency', async (req, res) => {
   try {
     const { amount = 100 } = req.query;
     const numericAmount = parseFloat(amount);
 
     if (isNaN(numericAmount) || numericAmount < 0) {
-      return res.status(400).json({
-        success: false,
-        error: 'Please provide a valid positive amount'
-      });
+      return res.status(400).json({ success: false, error: 'Please provide a valid positive amount' });
     }
 
     const exchangeRates = { USD: 0.012, EUR: 0.011, GBP: 0.0095 };
@@ -123,51 +121,36 @@ app.get('/api/currency', async (req, res) => {
 
     res.json({
       success: true,
-      data: {
-        originalAmount: numericAmount,
-        originalCurrency: 'INR',
-        conversions
-      }
+      data: { originalAmount: numericAmount, originalCurrency: 'INR', conversions }
     });
+
   } catch (error) {
     console.error('Currency API error:', error.message);
-    res.status(500).json({
-      success: false,
-      error: 'Unable to fetch currency data'
-    });
+    res.status(500).json({ success: false, error: 'Unable to fetch currency data' });
   }
 });
 
-// ================== QUOTES API ==================
+// Quotes endpoint
 app.get('/api/quote', async (req, res) => {
   try {
     const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
     const quote = motivationalQuotes[randomIndex];
-
     await new Promise(resolve => setTimeout(resolve, 400));
 
-    res.json({
-      success: true,
-      data: quote
-    });
+    res.json({ success: true, data: quote });
+
   } catch (error) {
     console.error('Quotes API error:', error.message);
-    res.status(500).json({
-      success: false,
-      error: 'Unable to fetch quote'
-    });
+    res.status(500).json({ success: false, error: 'Unable to fetch quote' });
   }
 });
 
-// ================== HEALTH CHECK ==================
+// Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({
-    success: true,
-    message: 'InfoHub API Server is running successfully!'
-  });
+  res.json({ success: true, message: 'InfoHub API Server is running successfully!' });
 });
 
-// ================== ROOT ==================
+// Root endpoint
 app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to InfoHub API Server',
@@ -180,7 +163,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// ================== START SERVER ==================
+// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

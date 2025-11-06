@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 const QuoteGenerator = () => {
   const [quote, setQuote] = useState(null);
@@ -10,7 +12,7 @@ const QuoteGenerator = () => {
     try {
       setLoading(true);
       setError('');
-      const response = await axios.get('http://localhost:5000/api/quote');
+      const response = await axios.get(`${API_URL}/api/quote`);
       
       if (response.data.success) {
         setQuote(response.data.data);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 const CurrencyConverter = () => {
   const [amount, setAmount] = useState(100);
   const [conversionData, setConversionData] = useState(null);
@@ -11,7 +11,8 @@ const CurrencyConverter = () => {
     try {
       setLoading(true);
       setError('');
-      const response = await axios.get(`http://localhost:5000/api/currency?amount=${conversionAmount}`);
+      const response = await axios.get(`${API_URL}/api/currency?amount=${conversionAmount}`);
+
       
       if (response.data.success) {
         setConversionData(response.data.data);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 const WeatherModule = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -45,7 +46,7 @@ const WeatherModule = () => {
       setLoading(true);
       setError('');
       
-      let apiUrl = 'http://localhost:5000/api/weather';
+      let apiUrl = `${API_URL}/api/weather`;
       let requestType = 'default';
       
       if (location?.lat && location?.lon) {
