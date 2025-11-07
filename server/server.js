@@ -40,7 +40,7 @@ app.get('/api/weather', async (req, res) => {
       };
 
       weatherData = {
-        location: `Lat: ${lat}, Lon: ${lon}`,
+        location: data?.timezone || `Lat: ${lat}, Lon: ${lon}`,
         temperature: Math.round(data.current.temperature_2m),
         description: weatherCodes[data.current.weather_code] || 'Unknown',
         humidity: data.current.relative_humidity_2m,
